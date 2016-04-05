@@ -1,4 +1,6 @@
+/* eslint-disable */
 var webpack = require('webpack');
+var path = require('path');
 var version = require('./package.json').version;
 
 module.exports = {
@@ -29,12 +31,18 @@ module.exports = {
         test: /\.less/,
         loader: 'style-loader!css-loader!autoprefixer-loader!less-loader'
       },
+    ],
+    postLoaders: [
+      {
+        include: path.resolve(__dirname, 'node_modules/pixi.js'),
+        loader: 'transform?brfs'
+      }
     ]
   },
   plugins: [
     new webpack.DefinePlugin({
-      __VERSION__: `'${version}'`,
-      __BUILD_DATE__: new Date().getTime()
+      __VERSION__: "'" + version + "'",
+      __BUILD_DATE__: "'" + new Date() + "'"
     }),
     new webpack.optimize.UglifyJsPlugin({ minimize: true })
   ]
