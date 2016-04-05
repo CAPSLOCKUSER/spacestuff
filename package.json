@@ -9,6 +9,10 @@
     "start": "webpack && open index.html",
     "eslint": "gulp eslint"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CAPSLOCKUSER/spacestuff.git"
+  },
   "author": "Miklos Megyes <m.miklos05+github@gmail.com>",
   "license": "MIT",
   "devDependencies": {
