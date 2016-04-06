@@ -2,6 +2,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var version = require('./package.json').version;
+var PROD = JSON.parse(process.env.PRODUCTION || '0');
 
 module.exports = {
   entry: './src/js/main.js',
@@ -43,7 +44,6 @@ module.exports = {
     new webpack.DefinePlugin({
       __VERSION__: "'" + version + "'",
       __BUILD_DATE__: "'" + new Date() + "'"
-    }),
-    new webpack.optimize.UglifyJsPlugin({ minimize: true })
-  ]
+    })
+  ].concat(PROD ? [new webpack.optimize.UglifyJsPlugin({ minimize: true })] : [])
 };
