@@ -1,5 +1,7 @@
 import PIXI from 'pixi.js';
 import InputManager from './inputManager';
+import { clamp } from './utils';
+import { GAME_WIDTH, GAME_HEIGHT } from './config';
 import GameHTML from '../jade/main.jade';
 import '../less/main.less';
 
@@ -8,7 +10,7 @@ function createGame(gameParameters) {
   container.innerHTML = GameHTML;
 
   const canvas = container.querySelector('canvas.game');
-  const renderer = PIXI.autoDetectRenderer(800, 600, {
+  const renderer = PIXI.autoDetectRenderer(GAME_WIDTH, GAME_HEIGHT, {
     view: canvas,
     antialias: false,
     transparent: false,
@@ -47,6 +49,7 @@ function createGame(gameParameters) {
     tilingSprite.tilePosition.x -= 0.3;
 
     player.y += 0.25 * deltaTime * InputManager.getPlayerDirection();
+    player.y = clamp(player.y, 0, GAME_HEIGHT);
 
     renderer.render(stage);
 
