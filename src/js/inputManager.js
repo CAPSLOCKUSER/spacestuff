@@ -5,6 +5,8 @@ let playerDirection = 0;
 const KEY_CODES = {
   DOWN: 40,
   UP: 38,
+  W: 87,
+  S: 83,
   SPACE: 32,
 };
 
