@@ -14,7 +14,7 @@ function createGame(gameParameters) {
     view: canvas,
     antialias: false,
     transparent: false,
-    resolution: window.devicePixelRatio,
+    resolution: window.devicePixelRatio || 1,
   });
   const stage = new PIXI.Container();
 
@@ -31,8 +31,8 @@ function createGame(gameParameters) {
     stage.addChild(player);
   });
 
-  let previousTime = Date.now();
-  let currentTime = previousTime;
+  let previousTime = null;
+  let currentTime = Date.now();
   let deltaTime = 0;
 
   function awake() {
